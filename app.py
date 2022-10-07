@@ -7,7 +7,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 try:
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 except Exception as msg:
     print(msg)
 
