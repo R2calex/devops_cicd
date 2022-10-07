@@ -6,16 +6,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myapp.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+class Myapp(db.Model):
+    c_id = db.Column(db.Integer, primary_key=True)
+    c_name = db.Column(db.String(500))
+    
 try:
     with app.app_context():
         db.create_all()
 except Exception as msg:
     print(msg)
-
-
-class Myapp(db.Model):
-    c_id = db.Column(db.Integer, primary_key=True)
-    c_name = db.Column(db.String(500))
 
 
 @app.route('/')
